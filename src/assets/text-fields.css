@@ -1,0 +1,22 @@
+.v-text-field.no-border-text-field > .v-input__control > .v-input__slot:before {
+  display: none;
+}
+.v-text-field.no-border-text-field > .v-input__control > .v-input__slot:after {
+  display: none;
+}
+.v-text-field.text-center input {
+  text-align: center;
+}
+
+.text-field-custom {
+  background: var(--v-backgroundSecondary-base);
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+.v-text-field.text-field-custom > .v-input__control > .v-input__slot:before {
+  display: none;
+}
+.v-text-field.text-field-custom > .v-input__control > .v-input__slot:after {
+  display: none;
+}

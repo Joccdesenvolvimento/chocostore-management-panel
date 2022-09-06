@@ -1,0 +1,13 @@
+
+.v-data-table.striped tbody tr:nth-of-type(even) {
+  /* background-color: rgba(236, 237, 237); */
+}
+
+.v-data-table.striped tbody tr:nth-of-type(odd) {
+  /* background-color: #F8FAFC; */
+  background-color: var(--v-backgroundSecondary-base);
+}
+
+.v-data-table.striped tr, .v-data-table.striped td, .v-data-table.striped th{
+  border: none!important
+}

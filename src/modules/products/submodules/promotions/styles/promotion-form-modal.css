@@ -1,0 +1,93 @@
+.v-dialog {
+  border-radius: 0.8rem;
+}
+.dialog-content {
+  padding: 2rem;
+  background-color: #fff;
+}
+.dialog-title {
+  font-size: 1.2rem;
+  margin-bottom: 3rem !important;
+}
+.dialog-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.4rem;
+}
+.flex-1 {
+  flex: 1;
+}
+.small-primary-text {
+  font-size: 0.8rem;
+  color: #ff6171;
+  cursor: pointer;
+}
+.small-text {
+  font-size: 0.8rem;
+  max-width: 6rem;
+}
+.small-text-full {
+  font-size: 0.8rem;
+  max-width: 100%;
+}
+.medium-text {
+  font-size: 1rem;
+}
+.big-text {
+  font-size: 1.2rem;
+}
+.extra-big-text {
+  font-size: 1.4rem;
+}
+.large-text {
+  font-size: 1.8rem;
+}
+.text-product-normal-price {
+  font-size: 0.8rem;
+}
+.product-price {
+  font-size: 1.8rem;
+  text-decoration: line-through;
+  margin-left: 0.6rem !important;
+}
+.promotional-price {
+  font-size: 2rem;
+  margin-left: 0.6rem !important;
+  font-weight: 600;
+}
+.quantity-button-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.quantity-button-actions .v-icon {
+  border: 1px solid #555555;
+  border-radius: 50rem;
+  padding: 0.2rem;
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+.quantity-button-text {
+  max-width: 6rem;
+  display: flex;
+  flex-direction: column;
+  margin-right: 2rem;
+}
+.small-card {
+  font-size: 0.2rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 1rem;
+  padding: 1rem;
+  min-height: 6.2rem;
+}
+.input-quantity-button-text-number {
+  font-size: 1.8rem;
+  max-width: 6rem;
+  outline: none;
+}
+p {
+  margin: 0 !important;
+}

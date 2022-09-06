@@ -1,0 +1,17 @@
+.v-tab {
+  font-size: 0.95rem!important;
+  text-transform: none!important;
+  letter-spacing: 0.01rem!important;
+}
+
+.v-tabs-slider-wrapper {
+  bottom: 8px!important;
+}
+
+.v-tab:before {
+  display: none!important;
+}
+
+.v-tabs-slider {
+  border-radius: 25px!important;
+}

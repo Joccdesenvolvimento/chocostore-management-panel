@@ -1,0 +1,10 @@
+.v-btn:not(.v-btn--fab), .v-btn:not(.v-btn--round){
+  border-radius: 5px;
+}
+
+.v-btn.padding-large{
+  padding: inherit 16px!important;
+}
+.v-btn{
+  font-weight: 400;
+}

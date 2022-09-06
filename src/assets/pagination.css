@@ -1,0 +1,25 @@
+.v-pagination__item{
+  box-shadow: none!important;
+  background: var(--v-backgroundSecondary-base)!important;
+  color: #999999!important;
+  font-size: 0.9rem!important;
+  margin: 0!important;
+}
+
+.v-pagination__item--active{
+  color: white!important;
+}
+
+.v-pagination__navigation--disabled{
+  background: var(--v-backgroundSecondary-base)!important;
+}
+
+.v-pagination__navigation{
+  background: var(--v-backgroundPanel-base)!important;
+  border: 1px solid var(--v-border-base)!important;
+  box-shadow: none!important;
+}
+
+.v-pagination__item:focus, .v-pagination__navigation:focus{
+  outline: none!important;
+}

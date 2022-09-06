@@ -1,0 +1,18 @@
+.c {
+  fill: var(--v-backgroundTerciary-base) !important;
+}
+
+.theme--light .menu .c {
+  fill: #323232 !important;
+}
+.theme--dark .menu .c {
+  fill: #fff !important;
+}
+
+.v-icon[color='primary'] {
+  color: var(--v-primary-base) !important;
+}
+
+svg[color='primary'] .c {
+  fill: var(--v-primary-base) !important;
+}

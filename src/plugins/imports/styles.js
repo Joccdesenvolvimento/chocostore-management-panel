@@ -1,0 +1,10 @@
+import '@/assets/tailwind.css';
+import '@/assets/buttons.css';
+import '@/assets/cards.css';
+import '@/assets/icons.css';
+import '@/assets/modais.css';
+import '@/assets/pagination.css';
+import '@/assets/selection-controls.css';
+import '@/assets/tabs.css';
+import '@/assets/tables.css';
+import '@/assets/text-fields.css';

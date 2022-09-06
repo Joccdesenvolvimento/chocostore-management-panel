@@ -1,0 +1,8 @@
+.v-input__append-inner > .v-input--selection-controls {
+  padding-top: 0px !important;
+  margin-top: 0px !important;
+}
+
+.v-input__append-inner .v-input__slot {
+  margin-bottom: 0px !important;
+}
