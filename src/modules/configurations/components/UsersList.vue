@@ -1,90 +1,41 @@
 <template>
-  <div class="content-scroll">
-    <v-row justify="center" class="tw-pb-36 md:tw-pb-1">
-      <v-col cols="11">
-        <v-row class="tw-items-center">
-          <v-col cols="4" class="d-flex tw-pt-6">
-            <InputSearch :placeholder="`Pesquisar usuário`" v-model="search" />
-          </v-col>
-          <v-btn
-            :loading="isDeleting"
-            icon
-            color="gray"
-            @click="deleteUsers"
-            v-show="selectedUsers.length > 0"
-            class="tw-ml-2"
-          >
-            <v-icon>la-trash-alt</v-icon>
-          </v-btn>
-        </v-row>
-      </v-col>
+  <div>
+    <v-row no-gutters>
       <v-col cols="12">
-        <v-data-table
-          :headers="tableUsers.config.headers"
-          :items="users"
-          :search="search"
-          hide-default-footer
-          show-select
-          :page.sync="tableConstants.page"
-          class="table-hover-pointer striped"
-          mobile-breakpoint="0"
-          item-key="id"
-          no-data-text="Sem usuários"
-          no-results-text="Nenhum resultado encontrado"
-          :items-per-page="tableConstants.itemsPerPage"
-          sort-by="name"
-          :sort-desc="false"
-          fixed-header
-          v-bind="$attrs"
-          @page-count="tableConstants.pageCount = $event"
-          @click:row="handleClickRow"
-          v-model="selectedUsers"
-        >
-          <template
-            v-slot:item.data-table-select="{ isSelected, item, select }"
-          >
+        <v-data-table :headers="tableUsers.config.headers" :items="users" :search="search" hide-default-footer
+          show-select :page.sync="tableConstants.page" class="table-hover-pointer striped" mobile-breakpoint="0"
+          item-key="id" no-data-text="Sem usuários" no-results-text="Nenhum resultado encontrado"
+          :items-per-page="tableConstants.itemsPerPage" sort-by="name" :sort-desc="false" fixed-header v-bind="$attrs"
+          @page-count="tableConstants.pageCount = $event" @click:row="handleClickRow" v-model="selectedUsers">
+          <template v-slot:item.data-table-select="{ isSelected, item, select }">
             <template v-if="item.type != 'default'">
               <v-simple-checkbox :value="isSelected" @input="select($event)">{{
-                item.name
+              item.name
               }}</v-simple-checkbox>
             </template>
           </template>
           <template v-slot:item.type="{ item }">{{
-            item.type == 'default'
-              ? 'JOCC'
-              : item.type == 'admin'
-              ? 'Adiministrador'
-              : 'Atendente'
+          item.type == 'default'
+          ? 'JOCC'
+          : item.type == 'admin'
+          ? 'Administrador'
+          : 'Atendente'
           }}</template>
         </v-data-table>
       </v-col>
     </v-row>
     <v-snackbar app v-model="showNotify" :color="colorMessage">
       {{ message }}
-      <v-btn
-        :color="colorMessage == 'primary' ? 'white' : 'red'"
-        icon
-        @click="showNotify = false"
-      >
+      <v-btn :color="colorMessage == 'primary' ? 'white' : 'red'" icon @click="showNotify = false">
         <v-icon>la la-close</v-icon>
       </v-btn>
     </v-snackbar>
-    <UsersForm
-      :userEdit="user"
-      :isEdit="isEdit"
-      @submit="submit"
-      :open="openUsersForm"
-      v-if="openUsersForm"
-      @close="$emit('close', false), (user = {}), (isEdit = false)"
-    />
+    <UsersForm :userEdit="user" :isEdit="isEdit" @submit="submit" :open="openUsersForm" v-if="openUsersForm"
+      @close="$emit('close', false), (user = {}), (isEdit = false)" />
     <AppFooter class="footer-paginate">
       <v-col cols="6">
-        <v-pagination
-          v-model="tableConstants.page"
-          :total-visible="tableConstants.totalVisible"
-          :length="tableConstants.pageCount"
-          color="primary"
-        ></v-pagination>
+        <v-pagination v-model="tableConstants.page" :total-visible="tableConstants.totalVisible"
+          :length="tableConstants.pageCount" color="primary"></v-pagination>
       </v-col>
     </AppFooter>
   </div>
@@ -104,7 +55,7 @@ export default {
   data() {
     return {
       usersList: [],
-      search: '',
+      
       isDeleting: false,
       selectedUsers: [],
       showNotify: false,
@@ -114,6 +65,9 @@ export default {
     };
   },
   props: {
+    search: {
+      default : ''
+    },
     openUsersForm: {
       default: false,
     },

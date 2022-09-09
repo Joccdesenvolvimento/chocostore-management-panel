@@ -214,14 +214,14 @@ export default {
           exact: true,
           access: ['default', 'admin'],
         },
-        {
+        /* {
           id: 7,
           title: 'Financeiro',
           icon: 'financial-icon',
           routeName: '/financeiro',
           exact: true,
           access: ['default', 'admin'],
-        },
+        }, */
       ],
       company: {},
     };

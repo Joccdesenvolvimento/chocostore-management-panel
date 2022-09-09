@@ -109,7 +109,7 @@ export default {
       showPassword: false,
       user: this.userEdit,
       types: [
-        { id: 0, text: 'Adiministrador', value: 'admin' },
+        { id: 0, text: 'Administrador', value: 'admin' },
         { id: 1, text: 'Atendente', value: 'clerk' },
       ],
       isSaving: false,

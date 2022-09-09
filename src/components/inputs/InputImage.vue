@@ -56,7 +56,7 @@
             </v-row>
           </v-card-actions>
         </v-col>
-        <v-col xs="12" md="5" cols="12" align-self="center" align="center" >
+        <v-col xs="12" md="5" cols="12" align-self="center" align="center">
           <v-card flat>
             <v-card
               @click="isZoomModalOpen = true"
@@ -166,6 +166,7 @@ export default {
   computed: {
     photoUrl: {
       get: function () {
+        if (!this.localUrl) return null;
         if (this.localUrl.startsWith('blob:')) {
           return this.localUrl;
         }

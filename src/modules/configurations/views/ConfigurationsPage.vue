@@ -1,34 +1,23 @@
 <template>
   <div>
     <ConfigurationPageHeader>
-      <v-col md="12" class="md:tw-pl-10 tw-px-0 md:tw-px-12px">
-        <v-slide-group multiple show-arrows>
-          <v-tabs v-model="activeTab" class="pt-1" color="black" @change="activeTab = $event">
-            <v-tab :ripple="false">Empresa</v-tab>
-            <v-tab :ripple="false">Horários</v-tab>
-            <v-tab :ripple="false">Entrega</v-tab>
-            <v-tab :ripple="false">Pagamento</v-tab>
-            <v-tab :ripple="false">Dados bancários</v-tab>
-            <v-tab :ripple="false">Usuários</v-tab>
-            <v-tab :ripple="false">Política de Privacidade</v-tab>
-          </v-tabs>
-        </v-slide-group>
+      <v-col>
+        <v-col cols="12" class="tw-pt-0">
+          <v-slide-group multiple>
+            <v-tabs v-model="activeTab" class="pt-1" color="black" @change="activeTab = $event">
+              <v-tab :ripple="false">Empresa</v-tab>
+              <v-tab :ripple="false">Horários</v-tab>
+              <v-tab :ripple="false">Entrega</v-tab>
+              <v-tab :ripple="false">Pagamento</v-tab>
+              <v-tab :ripple="false">Usuários</v-tab>
+              <v-tab :ripple="false">Política de Privacidade</v-tab>
+            </v-tabs>
+          </v-slide-group>
+        </v-col>
+        <v-autocomplete class="hidden-md-and-up mb-4 mx-6" label="Status da empresa" v-model="company.status"
+          @change="saveCompany({ company })" :items="status" item-text="text" item-value="id" hide-details>
+        </v-autocomplete>
       </v-col>
-      <v-spacer></v-spacer>
-
-      <v-autocomplete class="hidden-md-and-up mb-4 mx-6" label="Status da empresa" v-model="company.status"
-        @change="saveCompany({ company })" :items="status" item-text="text" item-value="id" hide-details>
-      </v-autocomplete>
-      <!-- <v-radio-group
-        class="hidden-sm-and-down"
-        v-model="company.status"
-        @change="saveCompany({ company })"
-        row
-      >
-        <v-radio label="Ativa" value="3"></v-radio>
-        <v-radio label="Inativa" value="2"></v-radio>
-        <v-radio label="Em breve" value="1"></v-radio>
-      </v-radio-group> -->
     </ConfigurationPageHeader>
     <CompanyForm @saveAbout="saveAbout" @saveCompany="saveCompany" v-if="company" :company="company"
       v-show="activeTab == 0" />
@@ -38,18 +27,11 @@
       v-if="company" :company="company" v-show="activeTab == 2" :isMobile="isMobile" />
     <PaymentForm @saveCompany="saveCompany" v-if="company" :company="company" v-show="activeTab == 3" />
 
-    <AccountsList @saveCompany="saveCompany" v-if="company" :company="company" v-show="activeTab == 4" />
-
-    <UsersList v-if="company" @close="openUsersForm = false" @edit="openUsersForm = true" :openUsersForm="openUsersForm"
-      v-show="activeTab == 5" />
+    <UsersPageList :company="company" v-show="activeTab == 4" />
 
     <PrivacyPolicyForm @savePrivacyPolicy="savePrivacyPolicy"
-      :privacyPolicy="company.privacyPolicy ? company.privacyPolicy : {}" v-if="company" v-show="activeTab == 6" />
+      :privacyPolicy="company.privacyPolicy ? company.privacyPolicy : {}" v-if="company" v-show="activeTab == 5" />
 
-    <AppFloatingButton v-if="activeTab == 5" @clickFloating="openUsersForm = true"
-      class="top-left-speed-dial floating-button-footer">
-      <span></span>
-    </AppFloatingButton>
     <v-snackbar app v-model="isNotifyVisible" :color="notifyColor">
       {{ notifyMessage }}
       <v-btn :color="notifyColor == 'primary' ? 'white' : 'red'" icon @click="isNotifyVisible = false">
@@ -62,6 +44,7 @@
 <script>
 import ConfigurationPageHeader from '../components/ConfigurationPageHeader';
 
+import UsersPageList from './UsersPageList.vue'
 import CompanyForm from '../components/CompanyForm';
 import DeliveryHoursForm from '../components/DeliveryHoursForm';
 import DeliveryValuesForm from '../components/DeliveryValuesForm';
@@ -84,6 +67,7 @@ export default {
   components: {
     ConfigurationPageHeader,
     CompanyForm,
+    UsersPageList,
     DeliveryHoursForm,
     PrivacyPolicyForm,
     DeliveryValuesForm,
@@ -95,7 +79,6 @@ export default {
     return {
       activeTab: 0,
       company: {},
-      openUsersForm: false,
       isNotifyVisible: false,
       notifyColor: '',
       notifyMessage: '',

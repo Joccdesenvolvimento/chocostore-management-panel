@@ -99,7 +99,7 @@
         align="center"
         justify="center"
         class="mt-0 hidden-sm-and-down"
-        v-if="order.statusId == 4"
+        v-if="order.statusId == 4 && order.totalCashback > 0"
       >
         <v-col md="11" sm="12">
           <v-row class="mt-0">

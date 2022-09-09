@@ -17,9 +17,11 @@ export default {
   created(){
     register(this.$store);
     this.getUsers()
+    this.getCustomers()
   },
   methods: {
     ...mapActions(['getUsers']),
+    ...mapActions(['getCustomers']),
   }
 };
 </script>
