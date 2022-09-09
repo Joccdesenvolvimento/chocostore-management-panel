@@ -65,6 +65,25 @@
                                 @click:append="showPass = !showPass"></v-text-field>
                         </v-col>
                     </v-row>
+                    <v-row no-gutters>
+                        <v-col cols="12" md="12" class="mt-6 tw-text-center">
+                            <p class="subtitle-1 font-weight-medium">Observações</p>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <p>Registrado em: {{formatDate(customer.createdAt)}}</p>
+                            <p>Atualizado em: {{formatDate(customer.updatedAt)}}</p>
+                            <p>Entrou pela última vez em: {{formatDate(customer.lastOpened)}}</p>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <p>Carteira Virtual : {{customer.UserVirtualWallet != null ? 'Sim' : 'Não'}}</p>
+                            <div v-if="customer.UserVirtualWallet != null">
+                                <p>Valor atual : {{parseFloat(customer.UserVirtualWallet.totalAmount).toFixed(2)}}</p>
+                                <p>ID da carteira : {{customer.UserVirtualWallet.id}}</p>
+                                <p>Criada em : {{formatDate(customer.UserVirtualWallet.createdAt)}}</p>
+                                <p>Atualizada em : {{formatDate(customer.UserVirtualWallet.updatedAt)}}</p>
+                            </div>
+                        </v-col>
+                    </v-row>
                     <v-row no-margin class="mt-3">
                         <v-col cols="6">
                             <v-btn depressed block @click="$emit('close')" color="normal">Voltar</v-btn>
@@ -89,7 +108,8 @@
 </template>
   
 <script>
-
+import moment from 'moment';
+moment.locale('pt-br');
 import { createNamespacedHelpers } from 'vuex';
 
 const { mapActions } = createNamespacedHelpers('users');
@@ -144,8 +164,12 @@ export default {
     },
     methods: {
         ...mapActions(['createCustomer', 'editCustomer']),
+        formatDate(date) {
+            return moment(date).format('DD/MM/YYYY HH:mm');
+        },
         async onSubmit() {
-            this.isSaving = true;
+            console.log(this.customer);
+            /* this.isSaving = true;
             try {
                 if ((this.showPassword && this.isEdit) || !this.isEdit) {
                     this.customer.password = this.password;
@@ -163,7 +187,7 @@ export default {
                 console.log(err);
                 this.showMessage(err.response.data.errors[0].message);
             }
-            this.isSaving = false;
+            this.isSaving = false; */
         },
         showMessage(message, color = '') {
             this.message = message;
