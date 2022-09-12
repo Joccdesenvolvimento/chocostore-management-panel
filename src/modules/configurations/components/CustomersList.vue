@@ -7,7 +7,8 @@
                     mobile-breakpoint="0" item-key="id" no-data-text="Sem usuários"
                     no-results-text="Nenhum resultado encontrado" :items-per-page="tableConstants.itemsPerPage"
                     sort-by="name" :sort-desc="false" fixed-header v-bind="$attrs"
-                    @page-count="tableConstants.pageCount = $event" @click:row="handleClickRow" v-model="selectedCustomers">
+                    @page-count="tableConstants.pageCount = $event" @click:row="handleClickRow"
+                    v-model="selectedCustomers">
                     <template v-slot:item.data-table-select="{ isSelected, item, select }">
                         <template v-if="item.type != 'default'">
                             <v-simple-checkbox :value="isSelected" @input="select($event)">{{
@@ -31,8 +32,8 @@
                 <v-icon>la la-close</v-icon>
             </v-btn>
         </v-snackbar>
-        <CustomerForm :customerEdit="customer" :isEdit="isEdit" @submit="submit" :open="openCustomersForm" v-if="openCustomersForm"
-            @close="$emit('close', false), (customer = {}), (isEdit = false)" />
+        <CustomerForm :customerEdit="customer" :isEdit="isEdit" @submit="submit" :open="openCustomersForm"
+            v-if="openCustomersForm" @close="$emit('close', false), (customer = {}), (isEdit = false)" />
         <AppFooter class="footer-paginate">
             <v-col cols="6">
                 <v-pagination v-model="tableConstants.page" :total-visible="tableConstants.totalVisible"
@@ -104,6 +105,11 @@ export default {
             }
             this.isDeleting = false;
         },
+    },
+    watch: {
+        selectedCustomers(val) {
+            this.$emit('selectedRow', this.selectedCustomers)
+        }
     },
     components: {
         CustomerForm,

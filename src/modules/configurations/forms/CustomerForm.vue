@@ -24,7 +24,7 @@
                             <InputTextField label="Telefone" v-model="customer.phone" />
                         </v-col>
                     </v-row>
-                    <v-row no-margin v-if="customer.Addresses.length > 0">
+                    <v-row no-margin v-if="customer.Addresses && customer.Addresses.length > 0">
                         <v-col cols="12" md="6">
                             <InputTextField label="Rua" :value="customer.Addresses[0].street" disabled />
                         </v-col>
@@ -65,7 +65,7 @@
                                 @click:append="showPass = !showPass"></v-text-field>
                         </v-col>
                     </v-row>
-                    <v-row no-gutters>
+                    <v-row no-gutters v-if="customer.id">
                         <v-col cols="12" md="12" class="mt-6 tw-text-center">
                             <p class="subtitle-1 font-weight-medium">Observações</p>
                         </v-col>
@@ -168,8 +168,8 @@ export default {
             return moment(date).format('DD/MM/YYYY HH:mm');
         },
         async onSubmit() {
-            console.log(this.customer);
-            /* this.isSaving = true;
+            /* console.log(this.customer); */
+            this.isSaving = true;
             try {
                 if ((this.showPassword && this.isEdit) || !this.isEdit) {
                     this.customer.password = this.password;
@@ -187,7 +187,7 @@ export default {
                 console.log(err);
                 this.showMessage(err.response.data.errors[0].message);
             }
-            this.isSaving = false; */
+            this.isSaving = false;
         },
         showMessage(message, color = '') {
             this.message = message;

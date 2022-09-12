@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       usersList: [],
-      
+
       isDeleting: false,
       selectedUsers: [],
       showNotify: false,
@@ -66,7 +66,7 @@ export default {
   },
   props: {
     search: {
-      default : ''
+      default: ''
     },
     openUsersForm: {
       default: false,
@@ -107,6 +107,11 @@ export default {
       }
       this.isDeleting = false;
     },
+  },
+  watch: {
+    selectedUsers(val) {
+      this.$emit('selectedRow', this.selectedUsers)
+    }
   },
   components: {
     UsersForm,
